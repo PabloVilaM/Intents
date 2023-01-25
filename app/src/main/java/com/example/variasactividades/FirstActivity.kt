@@ -12,17 +12,19 @@ import android.widget.TextView
 class FirstActivity : AppCompatActivity() {
     var RESULTADO_UNO = 1
     var RESULTADO_DOS = 2
-    var RESULTADO_TRES = 3
+    var REQUEST_IMAGE_CAPTURE = 3
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var segundaActi =  findViewById<Button>(R.id.button)
+        var camActi =  findViewById<Button>(R.id.button)
+        var segundaActi = findViewById<Button>(R.id.button2)
+        val text =
 
-        segundaActi.setOnClickListener{
+        camActi.setOnClickListener{
 
-            //val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            //startActivityForResult(intent,REQUEST_IMAGE_CAPTURE)
+            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            startActivityForResult(intent,REQUEST_IMAGE_CAPTURE)
             /*val navegador = Intent(Intent.ACTION_VIEW)
             val url = "http://www.google.com"
             navegador.data = Uri.parse(url.toString())
@@ -37,6 +39,14 @@ class FirstActivity : AppCompatActivity() {
             intent.putExtra("numerouno",5)
             intent.putExtra("numerodos",5)
             startActivityForResult(intent, RESULTADO_TRES)*/
+        }
+
+        segundaActi.setOnClickListener{
+            val intent = Intent(this,SecondActivity::class.java)
+            startActivityForResult(intent, RESULTADO_UNO)
+            intent.putExtra("numerouno",3)
+            intent.putExtra("numerodos",3)
+
 
         }
     }
@@ -45,23 +55,17 @@ class FirstActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        val saludo = findViewById<TextView>(R.id.textView3)
-        val saludo2 = findViewById<TextView>(R.id.textView4)
-        val saludo3 = findViewById<TextView>(R.id.textView5)
+        val saludo = findViewById<TextView>(R.id.textView)
 
         if(resultCode != Activity.RESULT_OK) return
         when(requestCode) {
             RESULTADO_UNO -> {
                 if (data != null) {
-                    saludo.text = data.getStringExtra("saludo")
+                    saludo.text = data.getStringExtra("suma")
                 }; }
             RESULTADO_DOS -> {
                 if (data != null) {
-                    saludo2.text = data.getStringExtra("saludo")
-                }; }
-            RESULTADO_TRES -> {
-                if (data != null) {
-                    saludo3.text = data.getStringExtra("saludo")
+
                 }; }
             // Other result codes
             else -> {}

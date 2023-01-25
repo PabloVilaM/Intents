@@ -12,9 +12,9 @@ class SecondActivity : AppCompatActivity() {
 
         val intent = getIntent()
 
-        /*val nro1 = intent.getIntExtra("numerouno",0)
+        val nro1 = intent.getIntExtra("numerouno",0)
         val nro2 = intent.getIntExtra("numerodos",0)
-        intent.putExtra("suma" , nro1 + nro2)*/
+        intent.putExtra("suma" , nro1 + nro2)
 
         //val numeroClientes = findViewById<TextView>(R.id.textView2)
 
